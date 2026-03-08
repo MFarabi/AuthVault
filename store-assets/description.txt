@@ -1,0 +1,38 @@
+AuthVault — Secure 2FA Authenticator
+
+Protect your online accounts with AuthVault, a fast and beautiful two-factor authentication (2FA) extension that lives right in your browser toolbar.
+
+🔐 KEY FEATURES
+
+• TOTP Code Generation — Industry-standard time-based one-time passwords (RFC 6238), compatible with any service that supports Google Authenticator.
+
+• One-Click Copy — Click any account to instantly copy the current code to your clipboard.
+
+• Live Countdown Timer — Visual circular countdown shows exactly when each code expires.
+
+• Color-Coded Accounts — Assign custom gradient colors for quick visual identification.
+
+• Search — Instantly filter through your accounts by name or email.
+
+• Import & Export — Easily back up or migrate your accounts:
+  - JSON file import/export
+  - Google Authenticator URI format (otpauth://)
+  - QR code export for transferring to mobile apps
+
+• Dark Mode — Beautiful dark and light themes with one-click toggle.
+
+• 100% Offline — Works entirely offline. No external requests, no tracking, no analytics.
+
+🛡️ PRIVACY FIRST
+
+AuthVault stores all data locally in your browser. Your secrets never leave your device — nothing is sent to any server, ever. No account required, no cloud sync, no telemetry.
+
+⚡ LIGHTWEIGHT
+
+Built with modern web technologies for a smooth, responsive experience. Minimal footprint with no background processes.
+
+📱 GOOGLE AUTHENTICATOR COMPATIBLE
+
+Easily import your existing accounts from Google Authenticator using the standard otpauth:// URI format, or export your AuthVault accounts to any compatible authenticator app via QR codes.
+
+AuthVault is open source: https://github.com/MFarabi/AuthVault

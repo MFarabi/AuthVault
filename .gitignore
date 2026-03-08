@@ -18,6 +18,9 @@ logs
 .fleet
 .idea
 
+# Store assets
+store-assets
+
 # Local env files
 .env
 .env.*

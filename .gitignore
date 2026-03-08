@@ -20,6 +20,7 @@ logs
 
 # Store assets
 store-assets
+authvault-extension.zip
 
 # Local env files
 .env

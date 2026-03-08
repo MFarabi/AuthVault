@@ -1,60 +1,113 @@
-# Nuxt Starter Template
+<p align="center">
+  <img src="public/icon-128.png" alt="AuthVault" width="80" height="80" />
+</p>
 
-[![Nuxt UI](https://img.shields.io/badge/Made%20with-Nuxt%20UI-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com)
+<h1 align="center">AuthVault</h1>
 
-Use this template to get started with [Nuxt UI](https://ui.nuxt.com) quickly.
+<p align="center">
+  A secure, modern 2FA authenticator Chrome extension with a beautiful UI.
+</p>
 
-- [Live demo](https://starter-template.nuxt.dev/)
-- [Documentation](https://ui.nuxt.com/docs/getting-started/installation/nuxt)
+<p align="center">
+  <img src="https://img.shields.io/badge/Manifest-V3-blue?logo=googlechrome&logoColor=white" alt="Manifest V3" />
+  <img src="https://img.shields.io/badge/Built%20with-Nuxt%204-00DC82?logo=nuxt&logoColor=white" alt="Nuxt 4" />
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License" />
+</p>
 
-<a href="https://starter-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png">
-    <img alt="Nuxt Starter Template" src="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png" width="830" height="466">
-  </picture>
-</a>
+---
 
-> The starter template for Vue is on https://github.com/nuxt-ui-templates/starter-vue.
+## Features
 
-## Quick Start
+- **TOTP Code Generation** — Generate time-based one-time passwords (RFC 6238) with live countdown timer
+- **One-Click Copy** — Click any account to instantly copy the current code
+- **Color-Coded Accounts** — Assign custom gradient colors to each account for quick identification
+- **Search** — Quickly filter accounts by name or label
+- **Import & Export**
+  - JSON file import/export
+  - Google Authenticator URI format (`otpauth://totp/...`)
+  - QR code export for transferring to mobile authenticator apps
+- **Dark Mode** — Automatic dark/light theme with manual toggle
+- **Offline** — Works entirely offline with no external requests
+- **Privacy First** — All data stored locally in your browser. Nothing is sent to any server.
 
-```bash [Terminal]
-npm create nuxt@latest -- -t github:nuxt-ui-templates/starter
-```
+## Installation
 
-## Deploy your own
+### From Source
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=starter&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fstarter&demo-image=https%3A%2F%2Fui.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fstarter-dark.png&demo-url=https%3A%2F%2Fstarter-template.nuxt.dev%2F&demo-title=Nuxt%20Starter%20Template&demo-description=A%20minimal%20template%20to%20get%20started%20with%20Nuxt%20UI.)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/MFarabi/AuthVault.git
+   cd AuthVault
+   ```
 
-## Setup
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-Make sure to install the dependencies:
+3. Build the extension:
+   ```bash
+   pnpm build:extension
+   ```
 
-```bash
-pnpm install
-```
+4. Load in Chrome:
+   - Open `chrome://extensions/`
+   - Enable **Developer mode** (top right)
+   - Click **Load unpacked**
+   - Select the `dist` folder
 
-## Development Server
+## Development
 
-Start the development server on `http://localhost:3000`:
+Start the development server to preview in a browser:
 
 ```bash
 pnpm dev
 ```
 
-## Production
+Then open `http://localhost:3000`.
 
-Build the application for production:
+## Tech Stack
 
-```bash
-pnpm build
+| Layer | Technology |
+|-------|-----------|
+| Framework | [Nuxt 4](https://nuxt.com) (SPA mode) |
+| UI | [Nuxt UI](https://ui.nuxt.com) + [Tailwind CSS 4](https://tailwindcss.com) |
+| OTP | [otpauth](https://github.com/nicolo-ribaudo/otpauth) |
+| QR Codes | [qrcode](https://github.com/soldair/node-qrcode) |
+| Icons | [Lucide](https://lucide.dev) + [Simple Icons](https://simpleicons.org) |
+| Extension | Chrome Manifest V3 |
+
+## Project Structure
+
+```
+app/
+├── components/
+│   ├── AccountCard.vue       # Account display with code, timer, copy
+│   ├── AddAccountModal.vue   # Add new account form
+│   ├── ColorPicker.vue       # Color selection grid
+│   ├── CountdownRing.vue     # Circular countdown timer
+│   └── QrCode.vue            # QR code renderer
+├── composables/
+│   └── useAuthenticator.ts   # Core logic: TOTP, storage, import/export
+├── pages/
+│   ├── index.vue             # Main account list
+│   └── settings.vue          # Import, export, donations
+└── app.vue                   # Root layout with header
+public/
+├── manifest.json             # Chrome extension manifest
+└── icon-*.png                # Extension icons
+scripts/
+└── fix-extension.cjs         # Post-build script for Chrome compatibility
 ```
 
-Locally preview production build:
+## How It Works
 
-```bash
-pnpm preview
-```
+AuthVault generates TOTP codes using the standard RFC 6238 algorithm — the same used by Google Authenticator, Authy, and other authenticator apps. Your secrets are stored in `localStorage` within the extension's sandboxed context and never leave your browser.
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request.
+
+## License
+
+[MIT](LICENSE)
